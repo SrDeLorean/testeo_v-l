@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="4">
           <h2>Login</h2>
-          <v-form>
+          <v-form @submit.prevent="login">
             <v-text-field v-model="email" label="Email" required> </v-text-field>
             <v-text-field v-model="pass"  label="Contrasena" required></v-text-field>
           </v-form>
@@ -30,11 +30,11 @@ export default {
     }
   },
   methods:{
-    validar(email,pass){
-        console.log(email);
-        console.log(pass);
-        return true;
-        
+    login(){
+      this.$store.dispatch('retrivieToken',{
+        email: this.email,
+        pass: this.pass,
+      });  
     }
   },
 
