@@ -5,6 +5,8 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
+import axios from 'axios'
+
 
 new Vue({
   router,
