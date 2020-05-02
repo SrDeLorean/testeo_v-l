@@ -8,7 +8,7 @@
             <v-text-field v-model="email" label="Email" required> </v-text-field>
             <v-text-field v-model="pass"  label="Contrasena" required></v-text-field>
           </v-form>
-          <v-btn color="success" class="mr-4" @click="validar(email,pass)">acceder</v-btn>
+          <v-btn color="success" class="mr-4" @click="login(email,pass)">acceder</v-btn>
         </v-col>
       </v-row>
       
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Home',
   components:{
@@ -30,12 +31,17 @@ export default {
     }
   },
   methods:{
-    login(){
-      this.$store.dispatch('retrivieToken',{
-        email: this.email,
-        pass: this.pass,
-      });  
-    }
+    login(email,pass){
+      console.log(email);
+      let post ={
+        "email": email,
+        "password": pass,
+      };
+      axios.post('http://127.0.0.1:8000/api/v1/auth/login',post).then((result)=>{
+        console.log(result)
+      })
+    } 
+    
   },
 
 }
